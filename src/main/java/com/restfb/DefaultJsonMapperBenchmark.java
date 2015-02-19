@@ -39,7 +39,7 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Benchmark)
-@Fork(value = 5)
+@Fork(value = 5, jvmArgsAppend = {"-Xms512m", "-Xmx1024m"})
 public class DefaultJsonMapperBenchmark {
 
     private String json;
@@ -47,7 +47,7 @@ public class DefaultJsonMapperBenchmark {
 
     @Setup
     public void setup() {
-        json = JsonMapper.jsonFromClasspath("post-with-normal-comments");
+        json = JsonHelper.jsonFromClasspath("post-with-normal-comments");
         mapper = new DefaultJsonMapper();
     }
 
