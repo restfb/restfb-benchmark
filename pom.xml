@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.restfb</groupId>
+    <artifactId>restfb-benchmark</artifactId>
+    <packaging>jar</packaging>
+    <name>JMH RestFB Benchmark</name>
+    <version>1.0.0</version>
+    <url>http://restfb.com</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git:ssh://github.com/restfb/restfb-benchmark.git</connection>
+        <url>http://github.com/restfb/restfb-benchmark</url>
+    </scm>
+
+    <dependencies>
+	<dependency>
+	    <groupId>org.openjdk.jmh</groupId>
+	    <artifactId>jmh-core</artifactId>
+	    <version>1.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.openjdk.jmh</groupId>
+	    <artifactId>jmh-generator-annprocess</artifactId>
+	    <version>1.0</version>
+	    <scope>provided</scope>
+	</dependency>
+    </dependencies>
+
+    <prerequisites>
+	<maven>3.0</maven>
+    </prerequisites>
+
+    <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<uberjar.name>benchmarks</uberjar.name>
+    </properties>
+    
+    <developers>
+        <developer>
+            <id>mark.a.allen</id>
+            <name>Mark Allen</name>
+            <email>mark.a.allen@gmail.com</email>
+            <url>http://restfb.com</url>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+        <developer>
+            <id>nbartels</id>
+            <name>Norbert Bartels</name>
+            <url>http://www.phpmonkeys.de</url>
+	    <roles>
+		<role>Maintainer</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+    </developers>
+
+    <build>
+	<plugins>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.0</version>
+		<configuration>
+		    <compilerVersion>1.6</compilerVersion>
+		    <source>1.6</source>
+		    <target>1.6</target>
+		</configuration>
+	    </plugin>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-surefire-plugin</artifactId>
+		<version>2.14.1</version>
+		<configuration>
+		    <forkMode>always</forkMode>
+		    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+		</configuration>
+	    </plugin>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-shade-plugin</artifactId>
+		<version>2.0</version>
+		<executions>
+		    <execution>
+			<phase>package</phase>
+			<goals>
+			    <goal>shade</goal>
+			</goals>
+			<configuration>
+			    <finalName>${uberjar.name}</finalName>
+			    <transformers>
+				<transformer
+				    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+				    <mainClass>org.openjdk.jmh.Main</mainClass>
+				</transformer>
+			    </transformers>
+			</configuration>
+		    </execution>
+		</executions>
+	    </plugin>
+	</plugins>
+    </build>
+</project>
