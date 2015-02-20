@@ -40,14 +40,16 @@ public class SimpleDateFormatBenchmark {
 
     private final SimpleDateFormat myFormatter = new SimpleDateFormat(SHORT_DATE_FORMAT);
     
+   private String exampleDate = "09/22/2014";
+    
     @Benchmark
     public Date measureSimpleDateFormat() throws ParseException {
-        return new SimpleDateFormat(SHORT_DATE_FORMAT).parse("09/22/2014");
+        return new SimpleDateFormat(SHORT_DATE_FORMAT).parse(exampleDate);
     }
     
     @Benchmark
     public Date measurePrivateSimpleDateFormat() throws ParseException {
-	    return myFormatter.parse("09/22/2014");
+	    return myFormatter.parse(exampleDate);
     }
 
     /*
