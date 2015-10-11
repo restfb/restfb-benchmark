@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2010-2015 Mark Allen, Norbert Bartels.
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,9 +22,10 @@
 
 package com.restfb.benchmark;
 
-import com.restfb.DefaultJsonMapper;
-import com.restfb.types.Post;
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
 
+import org.json.JSONObject;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -33,24 +34,31 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 @State(Scope.Benchmark)
 @Fork(value = 5, jvmArgsAppend = { "-Xms512m", "-Xmx1024m" })
-public class DefaultJsonMapperBenchmark {
+public class JsonMapperBasicBenchmark {
 
   private String json;
-  private DefaultJsonMapper mapper;
 
   @Setup
   public void setup() {
     json = JsonHelper.jsonFromClasspath("post-with-normal-comments");
-    mapper = new DefaultJsonMapper();
   }
 
   @Benchmark
-  public Post toJavaObject() {
-    return mapper.toJavaObject(json, Post.class);
+  public JSONObject toJavaObjectJsonOrg() {
+    JSONObject obj = new JSONObject(json);
+    obj.getString("type");
+    return obj;
+  }
+
+  @Benchmark
+  public JsonObject toJavaObjectMinimalJson() {
+    JsonObject obj = Json.parse(json).asObject();
+    obj.get("type").asString();
+    return obj;
   }
 
   public static void main(String[] args) throws RunnerException {
-    Options opt = new OptionsBuilder().include(DefaultJsonMapperBenchmark.class.getSimpleName()).warmupIterations(5)
+    Options opt = new OptionsBuilder().include(JsonMapperBasicBenchmark.class.getSimpleName()).warmupIterations(5)
       .measurementIterations(15).forks(5).jvmArgs("-ea").build();
 
     new Runner(opt).run();

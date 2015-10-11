@@ -1,87 +1,85 @@
 {
-   "id": "1234",
-   "from": {
-      "name": "Manuel Martin",
-      "id": "4132"
-   },
-   "to": {
-      "data": [
-         {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "512331"
-         }
-      ]
-   },
-   "message": "hello world!",
-   "type": "status",
-   "created_time": "2010-09-14T22:41:25+0000",
-   "updated_time": "2010-09-14T22:41:25+0000",
-   "comments": {
-      "data": [
-         {
-            "id": "123456789",
-            "from": {
-               "name": "Vodafone",
-               "category": "Communications",
-               "id": "345345"
-            },
-            "message": "Test comment",
-            "created_time": "2010-09-15T16:09:21+0000"
-         },
-        {
-          "id": "2323434553",
-          "from": {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "457457647"
-          },
-          "message": "Test comment",
-          "created_time": "2010-09-15T16:09:21+0000"
+  "id": "1234",
+  "from": {
+    "name": "Manuel Martin",
+    "id": "4132"
+  },
+  "to": {
+    "data": [
+      {
+        "name": "Vodafone",
+        "category": "Communications",
+        "id": "512331"
+      }
+    ]
+  },
+  "message": "hello world!",
+  "type": "status",
+  "created_time": "2010-09-14T22:41:25+0000",
+  "updated_time": "2010-09-14T22:41:25+0000",
+  "comments": {
+    "data": [
+      {
+        "id": "123456789",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "345345"
         },
-        {
-          "id": "345345345",
-          "from": {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "572626"
-          },
-          "message": "Test comment",
-          "created_time": "2010-09-15T16:09:21+0000"
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      },
+      {
+        "id": "2323434553",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "457457647"
         },
-        {
-          "id": "534534534687",
-          "from": {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "234256"
-          },
-          "message": "Test comment",
-          "created_time": "2010-09-15T16:09:21+0000"
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      },
+      {
+        "id": "345345345",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "572626"
         },
-        {
-          "id": "8658678",
-          "from": {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "484678"
-          },
-          "message": "Test comment",
-          "created_time": "2010-09-15T16:09:21+0000"
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      },
+      {
+        "id": "534534534687",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "234256"
         },
-        {
-          "id": "567657567",
-          "from": {
-            "name": "Vodafone",
-            "category": "Communications",
-            "id": "678678678"
-          },
-          "message": "Test comment",
-          "created_time": "2010-09-15T16:09:21+0000"
-        }
-
-
-      ],
-      "count": 3
-   }
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      },
+      {
+        "id": "8658678",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "484678"
+        },
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      },
+      {
+        "id": "567657567",
+        "from": {
+          "name": "Vodafone",
+          "category": "Communications",
+          "id": "678678678"
+        },
+        "message": "Test comment",
+        "created_time": "2010-09-15T16:09:21+0000"
+      }
+    ],
+    "count": 3
+  }
 }

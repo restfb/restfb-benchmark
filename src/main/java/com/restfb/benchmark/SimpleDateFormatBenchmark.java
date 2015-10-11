@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2015 Mark Allen.
+ * Copyright (c) 2010-2015 Mark Allen, Norbert Bartels.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,6 @@
 
 package com.restfb.benchmark;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
@@ -33,49 +30,45 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @State(Scope.Thread)
 public class SimpleDateFormatBenchmark {
 
-    public static final String SHORT_DATE_FORMAT = "MM/dd/yyyy";
+  public static final String SHORT_DATE_FORMAT = "MM/dd/yyyy";
 
-    private final SimpleDateFormat myFormatter = new SimpleDateFormat(SHORT_DATE_FORMAT);
-    
-   private String exampleDate = "09/22/2014";
-    
-    @Benchmark
-    public Date measureSimpleDateFormat() throws ParseException {
-        return new SimpleDateFormat(SHORT_DATE_FORMAT).parse(exampleDate);
-    }
-    
-    @Benchmark
-    public Date measurePrivateSimpleDateFormat() throws ParseException {
-	    return myFormatter.parse(exampleDate);
-    }
+  private final SimpleDateFormat myFormatter = new SimpleDateFormat(SHORT_DATE_FORMAT);
 
-    /*
-     * ============================== HOW TO RUN THIS TEST: ====================================
-     *
-     * You can run this test:
-     *
-     * a) Via the command line:
-     *    $ mvn clean install
-     *    $ java -ea -jar target/restfb-benchmarks.jar SimpleDateFormatBenchmark -wi 5 -i 5 -f 1
-     *    (we requested 5 warmup/measurement iterations, single fork)
-     *
-     * b) Via the Java API:
-     *    (see the JMH homepage for possible caveats when running from IDE:
-     *      http://openjdk.java.net/projects/code-tools/jmh/)
-     */
+  private String exampleDate = "09/22/2014";
 
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(SimpleDateFormatBenchmark.class.getSimpleName())
-                .warmupIterations(5)
-                .measurementIterations(10)
-                .forks(1)
-                .jvmArgs("-ea")
-                .build();
+  @Benchmark
+  public Date measureSimpleDateFormat() throws ParseException {
+    return new SimpleDateFormat(SHORT_DATE_FORMAT).parse(exampleDate);
+  }
 
-        new Runner(opt).run();
-    }
+  @Benchmark
+  public Date measurePrivateSimpleDateFormat() throws ParseException {
+    return myFormatter.parse(exampleDate);
+  }
+
+  /*
+   * ============================== HOW TO RUN THIS TEST: ====================================
+   *
+   * You can run this test:
+   *
+   * a) Via the command line: $ mvn clean install $ java -ea -jar target/restfb-benchmarks.jar SimpleDateFormatBenchmark
+   * -wi 5 -i 5 -f 1 (we requested 5 warmup/measurement iterations, single fork)
+   *
+   * b) Via the Java API: (see the JMH homepage for possible caveats when running from IDE:
+   * http://openjdk.java.net/projects/code-tools/jmh/)
+   */
+
+  public static void main(String[] args) throws RunnerException {
+    Options opt = new OptionsBuilder().include(SimpleDateFormatBenchmark.class.getSimpleName()).warmupIterations(5)
+      .measurementIterations(10).forks(1).jvmArgs("-ea").build();
+
+    new Runner(opt).run();
+  }
 }
